@@ -480,11 +480,11 @@ export default function Home() {
           }}
         />
         {/* Custom Header */}
-        <header className="w-full py-6 bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 shadow-lg flex flex-col items-center mb-2">
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+        <header className="w-full py-6 bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 shadow-lg flex flex-col items-center mb-2 px-2 sm:px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-center">
             TON NFT MiniApp Creator
           </h1>
-          <p className="mt-2 text-lg text-gray-300">
+          <p className="mt-2 text-base sm:text-lg text-gray-300 text-center">
             Create, preview, and mint NFTs on TON. Now with Telegram Mini App
             support!
           </p>
@@ -496,7 +496,7 @@ export default function Home() {
           )}
         </header>
         {/* Stepper */}
-        <div className="flex items-center justify-center gap-8 py-6 border-b border-gray-800 relative">
+        <div className="flex flex-wrap justify-center gap-2 px-2 mb-4">
           {steps.map((step, idx) => (
             <button
               key={step}
@@ -520,7 +520,7 @@ export default function Home() {
                 )}
               </div>
               <span
-                className={`font-semibold text-base group-hover:text-blue-400 transition-colors ${
+                className={`font-semibold text-sm sm:text-base group-hover:text-blue-400 transition-colors ${
                   idx === currentStep
                     ? "text-blue-400"
                     : idx < currentStep
@@ -531,30 +531,28 @@ export default function Home() {
                 {step}
               </span>
               {idx < steps.length - 1 && (
-                <span className="w-8 h-1 bg-gray-700 rounded-full mx-2" />
+                <span className="w-8 h-1 bg-gray-700 rounded-full mx-2 hidden sm:inline-block" />
               )}
             </button>
           ))}
-          <div className="ml-auto mr-8 absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-4">
-            <TonConnectButton />
-            {/* Show wallet address if connected */}
-            {account ? (
-              <span className="text-xs bg-gray-800 px-2 py-1 rounded text-green-400 border border-green-700 ml-2">
-                Connected: {account.address.slice(0, 6)}...
-                {account.address.slice(-4)}
-              </span>
-            ) : (
-              <span className="text-xs bg-gray-800 px-2 py-1 rounded text-red-400 border border-red-700 ml-2">
-                Not connected
-              </span>
-            )}
-          </div>
+          <TonConnectButton />
+          {/* Show wallet address if connected */}
+          {account ? (
+            <span className="text-xs bg-gray-800 px-2 py-1 rounded text-green-400 border border-green-700 ml-2">
+              Connected: {account.address.slice(0, 6)}...
+              {account.address.slice(-4)}
+            </span>
+          ) : (
+            <span className="text-xs bg-gray-800 px-2 py-1 rounded text-red-400 border border-red-700 ml-2">
+              Not connected
+            </span>
+          )}
         </div>
 
         {/* NFT Minting Form */}
-        <section className="flex flex-col items-center justify-center py-10 px-2 w-full">
-          <div className="w-full max-w-lg bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl shadow-2xl border border-blue-700 p-10 flex flex-col items-center backdrop-blur-md bg-opacity-80 transition-all duration-500 hover:scale-[1.02] hover:shadow-blue-500/30">
-            <h2 className="text-3xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-center tracking-tight drop-shadow-lg animate-pulse">
+        <section className="flex flex-col items-center justify-center py-6 px-2 w-full">
+          <div className="w-full max-w-lg bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl shadow-2xl border border-blue-700 p-4 sm:p-8 flex flex-col items-center backdrop-blur-md bg-opacity-80 transition-all duration-500 hover:scale-[1.02] hover:shadow-blue-500/30">
+            <h2 className="text-2xl sm:text-3xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-center tracking-tight drop-shadow-lg animate-pulse">
               Mint a New NFT
             </h2>
             <p className="text-gray-300 mb-6 text-center text-base">
@@ -565,24 +563,24 @@ export default function Home() {
                 e.preventDefault();
                 await handleMintNFT(nftName, nftDescription, nftImage);
               }}
-              className="flex flex-col gap-6 w-full"
+              className="flex flex-col gap-4 w-full"
             >
               <input
                 type="text"
                 placeholder="NFT Name"
-                className="rounded-xl px-5 py-3 bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 shadow-inner hover:shadow-blue-500/10"
+                className="rounded-xl px-4 py-3 bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 shadow-inner hover:shadow-blue-500/10 text-sm sm:text-base"
                 value={nftName}
                 onChange={(e) => setNftName(e.target.value)}
                 required
               />
               <textarea
                 placeholder="NFT Description"
-                className="rounded-xl px-5 py-3 bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 min-h-[80px] resize-none shadow-inner hover:shadow-purple-500/10"
+                className="rounded-xl px-4 py-3 bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 min-h-[80px] resize-none shadow-inner hover:shadow-purple-500/10 text-sm sm:text-base"
                 value={nftDescription}
                 onChange={(e) => setNftDescription(e.target.value)}
                 required
               />
-              <label className="flex flex-col items-center justify-center border-2 border-dashed border-blue-700 rounded-xl py-8 cursor-pointer bg-gray-900 hover:bg-gray-800 transition-all duration-300 shadow-md hover:shadow-blue-500/20">
+              <label className="flex flex-col w-full">
                 <span className="text-blue-400 font-semibold mb-2">
                   Upload NFT Image
                 </span>
@@ -616,7 +614,7 @@ export default function Home() {
               </label>
               <button
                 type="submit"
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-pink-500 transition-all duration-300 rounded-xl py-3 font-bold text-lg shadow-xl mt-2 disabled:opacity-50 disabled:cursor-not-allowed text-white tracking-wide focus:ring-4 focus:ring-blue-400/50 focus:ring-offset-2 animate-fadeIn"
+                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-pink-500 transition-all duration-300 rounded-xl py-3 font-bold text-base sm:text-lg shadow-xl mt-2 disabled:opacity-50 disabled:cursor-not-allowed text-white tracking-wide focus:ring-4 focus:ring-blue-400/50 focus:ring-offset-2 animate-fadeIn"
                 disabled={!account || !nftName || !nftDescription || !nftImage}
               >
                 🚀 Mint NFT
@@ -630,10 +628,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Main Content */}
-        <div className="flex flex-1 overflow-hidden flex-col md:flex-row">
+        {/* Main Content Responsive Layout */}
+        <div className="flex flex-col md:flex-row gap-4 w-full px-2 md:px-6 max-w-7xl mx-auto">
           {/* Sidebar: Layers */}
-          <aside className="w-64 bg-gray-900 border-r border-gray-800 p-6 flex flex-col gap-6 min-h-full">
+          <aside className="w-full md:w-64 bg-gray-900 border-r border-gray-800 p-4 sm:p-6 flex flex-col gap-6 min-h-full mb-4 md:mb-0 rounded-lg md:rounded-none">
             <LayersPanel
               layers={layers}
               setLayers={setLayers}
@@ -662,8 +660,8 @@ export default function Home() {
           </aside>
 
           {/* Main Area */}
-          <main className="flex-1 flex flex-col items-center justify-center p-4 md:p-10 gap-8">
-            <div className="w-full max-w-xl bg-gray-900 border border-gray-800 rounded-lg p-8 flex flex-col items-center justify-center min-h-[300px]">
+          <div className="flex-1 flex flex-col gap-4">
+            <div className="w-full max-w-xl bg-gray-900 border border-gray-800 rounded-lg p-4 sm:p-8 flex flex-col items-center justify-center min-h-[300px] mx-auto">
               <div className="text-center text-lg font-semibold mb-4">
                 Upload traits for:{" "}
                 <span className="text-blue-400">
@@ -675,94 +673,54 @@ export default function Home() {
                 traits={traits}
                 setTraits={setTraits}
               />
-              <TraitList
-                traits={traits[selectedLayerId]}
-                selectedTraitIdx={selectedTraits[selectedLayerId]}
-                setSelectedTraitIdx={(idx) =>
-                  handleSelectTrait(selectedLayerId, idx)
-                }
-              />
+              <div className="w-full overflow-x-auto">
+                <TraitList
+                  traits={traits[selectedLayerId]}
+                  selectedTraitIdx={selectedTraits[selectedLayerId]}
+                  setSelectedTraitIdx={(idx) =>
+                    handleSelectTrait(selectedLayerId, idx)
+                  }
+                />
+              </div>
             </div>
             {/* Export step summary and buttons */}
-            {currentStep === 2 && (
-              <div className="w-full max-w-2xl flex flex-col gap-8">
-                <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-6">
-                  <div className="flex-1 flex flex-col gap-2">
-                    <div className="text-lg font-bold mb-1">
-                      Collection Summary
-                    </div>
-                    <div className="flex gap-8 text-center">
-                      <div>
-                        <div className="text-2xl text-blue-400 font-bold">
-                          {getAllCombinations(layers, traits).length}
-                        </div>
-                        <div className="text-gray-400 text-sm">
-                          NFTs Generated
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-2xl text-purple-400 font-bold">
-                          {layers.length}
-                        </div>
-                        <div className="text-gray-400 text-sm">Layers</div>
-                      </div>
-                      <div>
-                        <div className="text-2xl text-green-400 font-bold">
-                          {Object.values(traits).reduce(
-                            (a, arr) => a + arr.length,
-                            0
-                          )}
-                        </div>
-                        <div className="text-gray-400 text-sm">
-                          Total Traits
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-2xl text-orange-400 font-bold">
-                          600x600
-                        </div>
-                        <div className="text-gray-400 text-sm">Resolution</div>
-                      </div>
-                    </div>
+            {currentStep !== 3 && (
+              <div className="w-full max-w-2xl flex flex-col md:flex-row gap-6 mx-auto">
+                <div className="flex-1 bg-gray-900 border border-gray-800 rounded-lg p-4 sm:p-6 flex flex-col items-center">
+                  <div className="font-semibold mb-2">Export Locally</div>
+                  <div className="text-gray-400 text-sm mb-4 text-center">
+                    Download your NFT collection as a ZIP file containing images
+                    and metadata.
                   </div>
+                  <button
+                    className="w-full bg-green-600 hover:bg-green-700 transition rounded px-8 py-3 font-bold text-base sm:text-lg disabled:opacity-50"
+                    onClick={handleExport}
+                    disabled={getAllCombinations(layers, traits).length === 0}
+                  >
+                    <span className="mr-2">⬇️</span> Download ZIP
+                  </button>
                 </div>
-                <div className="flex flex-col md:flex-row gap-6">
-                  <div className="flex-1 bg-gray-900 border border-gray-800 rounded-lg p-6 flex flex-col items-center">
-                    <div className="font-semibold mb-2">Export Locally</div>
-                    <div className="text-gray-400 text-sm mb-4 text-center">
-                      Download your NFT collection as a ZIP file containing
-                      images and metadata.
-                    </div>
-                    <button
-                      className="w-full bg-green-600 hover:bg-green-700 transition rounded px-8 py-3 font-bold text-lg disabled:opacity-50"
-                      onClick={handleExport}
-                      disabled={getAllCombinations(layers, traits).length === 0}
-                    >
-                      <span className="mr-2">⬇️</span> Download ZIP
-                    </button>
+                <div className="flex-1 bg-gray-900 border border-gray-800 rounded-lg p-4 sm:p-6 flex flex-col items-center">
+                  <div className="font-semibold mb-2">
+                    Deploy to TON Testnet
                   </div>
-                  <div className="flex-1 bg-gray-900 border border-gray-800 rounded-lg p-6 flex flex-col items-center">
-                    <div className="font-semibold mb-2">
-                      Deploy to TON Testnet
-                    </div>
-                    <div className="text-gray-400 text-sm mb-4 text-center">
-                      Upload and deploy your collection to the TON blockchain
-                      testnet.
-                    </div>
-                    <button
-                      className="w-full bg-blue-600 hover:bg-blue-700 transition rounded px-8 py-3 font-bold text-lg disabled:opacity-50"
-                      onClick={() => setCurrentStep(3)}
-                      disabled={getAllCombinations(layers, traits).length === 0}
-                    >
-                      <span className="mr-2">🚀</span> Start Deploy Process
-                    </button>
+                  <div className="text-gray-400 text-sm mb-4 text-center">
+                    Upload and deploy your collection to the TON blockchain
+                    testnet.
                   </div>
+                  <button
+                    className="w-full bg-blue-600 hover:bg-blue-700 transition rounded px-8 py-3 font-bold text-base sm:text-lg disabled:opacity-50"
+                    onClick={() => setCurrentStep(3)}
+                    disabled={getAllCombinations(layers, traits).length === 0}
+                  >
+                    <span className="mr-2">🚀</span> Start Deploy Process
+                  </button>
                 </div>
               </div>
             )}
             {/* Deploy step */}
             {currentStep === 3 && (
-              <div className="w-full max-w-xl bg-gray-900 border border-gray-800 rounded-lg p-8 flex flex-col items-center justify-center min-h-[300px]">
+              <div className="w-full max-w-xl bg-gray-900 border border-gray-800 rounded-lg p-4 sm:p-8 flex flex-col items-center justify-center min-h-[300px] mx-auto">
                 <div className="text-center text-lg font-semibold mb-4">
                   Deploy to TON Testnet
                 </div>
@@ -771,7 +729,7 @@ export default function Home() {
                   testnet. (Real minting can be added in v2!)
                 </div>
                 <button
-                  className="bg-blue-600 hover:bg-blue-700 transition rounded px-8 py-3 font-bold text-lg disabled:opacity-50 mb-4"
+                  className="bg-blue-600 hover:bg-blue-700 transition rounded px-8 py-3 font-bold text-base sm:text-lg disabled:opacity-50 mb-4"
                   onClick={handleDeploy}
                   disabled={deploying}
                 >
@@ -779,7 +737,7 @@ export default function Home() {
                 </button>
                 {/* MVP Feature: Mint NFT Button */}
                 <button
-                  className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 transition rounded px-8 py-3 font-bold text-lg mt-2"
+                  className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 transition rounded px-8 py-3 font-bold text-base sm:text-lg mt-2"
                   onClick={() =>
                     handleMintNFT(nftName, nftDescription, nftImage)
                   }
@@ -793,9 +751,9 @@ export default function Home() {
                 )}
               </div>
             )}
-          </main>
-          {/* Preview */}
-          <aside className="w-80 bg-gray-900 border-l border-gray-800 p-6 flex flex-col gap-6 min-h-full">
+          </div>
+          {/* Preview Sidebar */}
+          <aside className="w-full md:w-80 bg-gray-900 border-l border-gray-800 p-4 sm:p-6 flex flex-col gap-6 min-h-full rounded-lg md:rounded-none mt-4 md:mt-0">
             <div>
               <h2 className="text-lg font-bold mb-4">Preview</h2>
               {renderPreview()}
