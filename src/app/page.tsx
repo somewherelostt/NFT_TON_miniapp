@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 import { useState, useRef, useEffect } from "react";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
@@ -325,6 +326,8 @@ export default function Home() {
 
   const { isTelegram, user } = useTelegram();
   const [tonConnectUI] = useTonConnectUI();
+  const isClient = typeof window !== "undefined";
+  const account = isClient ? tonConnectUI.account : null;
 
   useEffect(() => {
     // For each layer, if it has traits and no selected trait, select the first
@@ -425,7 +428,7 @@ export default function Home() {
     description: string,
     image: string
   ) => {
-    if (!tonConnectUI.account) {
+    if (!account) {
       alert("Please connect your Tonkeeper wallet first.");
       return;
     }
@@ -438,7 +441,7 @@ export default function Home() {
       const tonweb = new TonWeb(
         new TonWeb.HttpProvider("https://testnet.toncenter.com/api/v2/jsonRPC")
       );
-      const userAddress = tonConnectUI.account.address;
+      const userAddress = account.address;
       const contractAddress = NFT_CONTRACT_ADDRESS;
       // Prepare payload for mint (this is a placeholder, adjust for your contract)
       // You may need to encode the function call properly for your NFT contract
@@ -535,10 +538,10 @@ export default function Home() {
           <div className="ml-auto mr-8 absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-4">
             <TonConnectButton />
             {/* Show wallet address if connected */}
-            {tonConnectUI.account ? (
+            {account ? (
               <span className="text-xs bg-gray-800 px-2 py-1 rounded text-green-400 border border-green-700 ml-2">
-                Connected: {tonConnectUI.account.address.slice(0, 6)}...
-                {tonConnectUI.account.address.slice(-4)}
+                Connected: {account.address.slice(0, 6)}...
+                {account.address.slice(-4)}
               </span>
             ) : (
               <span className="text-xs bg-gray-800 px-2 py-1 rounded text-red-400 border border-red-700 ml-2">
@@ -614,16 +617,11 @@ export default function Home() {
               <button
                 type="submit"
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-pink-500 transition-all duration-300 rounded-xl py-3 font-bold text-lg shadow-xl mt-2 disabled:opacity-50 disabled:cursor-not-allowed text-white tracking-wide focus:ring-4 focus:ring-blue-400/50 focus:ring-offset-2 animate-fadeIn"
-                disabled={
-                  !tonConnectUI.account ||
-                  !nftName ||
-                  !nftDescription ||
-                  !nftImage
-                }
+                disabled={!account || !nftName || !nftDescription || !nftImage}
               >
                 🚀 Mint NFT
               </button>
-              {!tonConnectUI.account && (
+              {!account && (
                 <div className="text-xs text-red-400 mt-1 text-center animate-fadeIn">
                   Connect your wallet to mint.
                 </div>
