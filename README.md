@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NFT TON Miniapp
 
-## Getting Started
+A modern Next.js application for interacting with NFT collections on the TON blockchain. This project features wallet connection, NFT management, and seamless integration with TON Connect UI.
 
-First, run the development server:
+## 🚀 Features
+
+- Connect to TON wallets using @tonconnect/ui-react
+- Download NFT data as ZIP files (jszip, file-saver)
+- Modern React/Next.js 15+ architecture
+- Ready for deployment on Vercel
+
+## 🛠️ Tech Stack
+
+- [Next.js](https://nextjs.org/) 15+
+- [React](https://react.dev/)
+- [@tonconnect/ui-react](https://github.com/ton-connect/ui)
+- [jszip](https://stuk.github.io/jszip/)
+- [file-saver](https://github.com/eligrey/FileSaver.js)
+
+## 📦 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/nft-ton-miniapp.git
+cd nft-ton-miniapp
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Build for production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 🌐 Deployment (Vercel)
 
-To learn more about Next.js, take a look at the following resources:
+1. Push your code to GitHub, GitLab, or Bitbucket.
+2. Go to [Vercel](https://vercel.com/) and import your repository.
+3. Vercel auto-detects Next.js. Click **Deploy**.
+4. Add any required environment variables in the Vercel dashboard.
+5. Your app will be live at `https://your-app-name.vercel.app`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ⚙️ Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+If your app requires secrets or API keys, add them in Vercel’s dashboard under Project Settings → Environment Variables.
 
-## Deploy on Vercel
+## 📁 Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+NFT_TON_miniapp/
+├── public/                # Static assets
+├── src/app/               # Main app code (pages, providers, contracts)
+├── package.json           # Project metadata and dependencies
+├── README.md              # This file
+└── ...
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+## 📄 License
+
+MIT

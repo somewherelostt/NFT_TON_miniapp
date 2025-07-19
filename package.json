@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tonconnect/ui-react": "^2.2.0",
+    "file-saver": "^2.0.5",
+    "jszip": "^3.10.1",
     "next": "15.4.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
