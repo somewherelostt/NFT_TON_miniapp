@@ -8,7 +8,6 @@ import {
   useTonConnectUI,
 } from "@tonconnect/ui-react";
 import { useTelegram } from "./telegram-provider";
-// @ts-ignore
 import TonWeb from "tonweb";
 
 // Add contract address placeholder (replace with your deployed address)
@@ -386,6 +385,7 @@ export default function Home() {
     if (!combinations.length) return;
     const zip = new JSZip();
     const meta: any[] = [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     for (let i = 0; i < combinations.length; ++i) {
       const combo = combinations[i];
       const imageData = await compositeImages(combo);
@@ -782,7 +782,9 @@ export default function Home() {
                 {/* MVP Feature: Mint NFT Button */}
                 <button
                   className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 transition rounded px-8 py-3 font-bold text-lg mt-2"
-                  onClick={handleMintNFT}
+                  onClick={() =>
+                    handleMintNFT(nftName, nftDescription, nftImage)
+                  }
                 >
                   Mint NFT to My TON Wallet
                 </button>
